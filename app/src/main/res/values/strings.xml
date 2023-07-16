@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Clevertap Assignment</string>
+    <string name="submit">submit</string>
+    <string name="et_hint">Enter number between 1-10</string>
+</resources>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.adsama.clevertapassignment.HundViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".HundFragment">
+
+        <ImageView
+            android:id="@+id/iv_hund"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toTopOf="@id/btn_prev"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/btn_prev"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="14dp"
+            android:src="@drawable/arrow_circle_left"
+            app:layout_constraintBottom_toTopOf="@id/et_number_input"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_hund" />
+
+        <ImageView
+            android:id="@+id/btn_next"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="14dp"
+            android:src="@drawable/arrow_circle_right"
+            app:layout_constraintBottom_toTopOf="@id/et_number_input"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_hund" />
+
+        <EditText
+            android:id="@+id/et_number_input"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_margin="14dp"
+            android:background="@drawable/rounded_edittext_bg"
+            android:digits="0123456789"
+            android:hint="@string/et_hint"
+            android:inputType="number"
+            android:maxLength="2"
+            android:padding="10dp"
+            android:text="@={viewModel.count}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="14dp"
+            android:text="@string/submit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:setSubmitButtonState="@{viewModel.count.toString()}" />
+
+        <ProgressBar
+            android:id="@+id/pb_hund"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/purple_700"
+            android:visibility="@{viewModel.shouldShowLoadingIndicator ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
