@@ -53,7 +53,8 @@ class HundMediator(hundCallbacks: HundCallbacks) {
                         withContext(Dispatchers.Main) {
                             val imageUrls = hundMultipleResponse.message.filterIsInstance<String>()
                             mHundImages.addAll(imageUrls)
-                            currentIndex = mHundImages.size - 1
+                            currentIndex = mHundImages.indexOf(imageUrls[0])
+                            mHundCallbacks.getImage(mHundImages[currentIndex])
                         }
                     }
                 } else {
