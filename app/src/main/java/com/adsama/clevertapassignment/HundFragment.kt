@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -47,6 +48,9 @@ class HundFragment : Fragment() {
             Glide.with(requireContext()).load(it)
                 .error(AppCompatResources.getDrawable(requireContext(), R.drawable.empty_error))
                 .into(mHundBinding.ivHund)
+        }
+        mHundViewModel.getErrorMessage.observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         }
     }
 
