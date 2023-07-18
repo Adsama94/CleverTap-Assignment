@@ -28,7 +28,6 @@ class HundMediator(hundCallbacks: HundCallbacks) {
                             mHundImages.add(imageUrl)
                             currentIndex = mHundImages.size - 1
                             mHundCallbacks.getImage(imageUrl)
-
                         }
                     }
                 } else {
