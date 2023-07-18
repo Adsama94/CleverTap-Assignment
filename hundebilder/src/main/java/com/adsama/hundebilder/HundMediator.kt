@@ -11,10 +11,10 @@ import retrofit2.Response
 
 class HundMediator(hundCallbacks: HundCallbacks) {
 
-    var mCoroutineScope = CoroutineScope(Job() + Dispatchers.IO)
-    private var mHundCallbacks = hundCallbacks
-    val mHundImages = ArrayList<String>()
-    var currentIndex = -1
+    private val mCoroutineScope = CoroutineScope(Job() + Dispatchers.IO)
+    private val mHundCallbacks = hundCallbacks
+    private val mHundImages = ArrayList<String>()
+    private var currentIndex = -1
 
     fun getImage() {
         mCoroutineScope.launch {
@@ -55,7 +55,6 @@ class HundMediator(hundCallbacks: HundCallbacks) {
                             val imageUrls = hundMultipleResponse.message.filterIsInstance<String>()
                             mHundImages.addAll(imageUrls)
                             currentIndex = mHundImages.size - 1
-                            mHundCallbacks.getImages(mHundImages)
                         }
                     }
                 } else {
@@ -68,6 +67,16 @@ class HundMediator(hundCallbacks: HundCallbacks) {
                     mHundCallbacks.getError("Exception fetching data! ${e.message}")
                 }
             }
+        }
+    }
+
+    fun getNextImage() {
+        if (currentIndex < mHundImages.size - 1) {
+            currentIndex++
+            val imageUrl = mHundImages[currentIndex]
+            mHundCallbacks.getNextImage(imageUrl)
+        } else {
+            getImage()
         }
     }
 
