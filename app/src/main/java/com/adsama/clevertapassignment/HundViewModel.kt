@@ -61,4 +61,9 @@ class HundViewModel : ViewModel(), HundCallbacks {
         _hundResponse.value = imageUrl
     }
 
+    override fun onCleared() {
+        super.onCleared()
+        mHundMediator.cancelCoroutineScope()
+    }
+
 }

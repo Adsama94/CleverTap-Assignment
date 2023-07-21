@@ -5,6 +5,7 @@ import com.adsama.hundebilder.network.HundApi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.Response
@@ -88,6 +89,10 @@ class HundMediator(hundCallbacks: HundCallbacks) {
         } else {
             mHundCallbacks.getError("No Previous Images!")
         }
+    }
+
+    fun cancelCoroutineScope() {
+        mCoroutineScope.cancel()
     }
 
     private suspend fun getSingleHundImage(): Response<HundResponse> {
